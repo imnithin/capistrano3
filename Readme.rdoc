@@ -1,0 +1,14 @@
+On New Instance Set-up
+===
+
+* Install Web Server and Application Server.
+
+* Git Client installation - http://unix.stackexchange.com/a/170831
+
+* Check for relevent ssh keys, so your client machine and git can interact smoothly. 
+ 
+* Fpr Rails 3 Use <tt>gem 'turbo-sprockets-rails3'</tt> for faster assets pre-compilation - Solved holding up for longer periods on precompiling during <tt>cap deploy</tt>
+ 
+* If using whenever Add <tt>rvm_trust_rvmrcs_flag=1</tt> to <tt>~/.rvmrc</tt> file - https://github.com/javan/whenever#rvm-integration
+
+* I have also added delayed job https://github.com/collectiveidea/delayed_job/wiki/Delayed-Job-tasks-for-Capistrano-3 cap task.
