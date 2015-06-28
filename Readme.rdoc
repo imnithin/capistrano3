@@ -4,7 +4,9 @@
 
 * {Git Client installation -for latest version}[http://unix.stackexchange.com/a/170831]
 
-* Check for relevent ssh keys, so your client machine and git can interact smoothly. 
+= On Cap3 in this project
+
+* Use relevent ssh keys, so your client machine and git can interact smoothly. 
  
 * For Rails 3 Use <tt>gem 'turbo-sprockets-rails3'</tt> for faster assets pre-compilation - Solved holding up for longer periods on precompiling during <tt>cap deploy</tt>
  
