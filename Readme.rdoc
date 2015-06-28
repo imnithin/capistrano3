@@ -1,4 +1,4 @@
- = On New Instance Set-up
+= On New Instance Set-up
 
 * Install Web Server and Application Server.
 
