@@ -2,7 +2,7 @@ set :stage, :staging
 set :branch, "master"
 set :application, "MyApp"
 set :rvm_ruby_version, 'ruby-1.9.3-p547' #include capistrano-rvm gem
-
+set :rails_env, 'staging'
 # Simple Role Syntax
 # ==================
 # Supports bulk-adding hosts to roles, the primary
