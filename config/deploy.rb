@@ -28,6 +28,7 @@ set :linked_dirs, %w{log tmp/pids tmp/cache vendor/bundle public/assets} #rails3
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 set :delayed_job_args, "-n 2" # number of workers
+set :whenever_roles, ->{ :app } # be defaut whenever maps to db role.
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 
 namespace :deploy do

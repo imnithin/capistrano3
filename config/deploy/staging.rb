@@ -1,8 +1,12 @@
 set :stage, :staging
 set :branch, "master"
 set :application, "MyApp"
-set :rvm_ruby_version, 'ruby-1.9.3-p547' #include capistrano-rvm gem
+# set :rvm_ruby_version, 'ruby-1.9.3-p547' #include capistrano-rvm gem
 set :rails_env, 'staging'
+
+puts "--------------- ENV: #{fetch(:rails_env)} -----------------" 
+puts "--------------- Branch: #{fetch(:branch)} -----------------" 
+
 # Simple Role Syntax
 # ==================
 # Supports bulk-adding hosts to roles, the primary
@@ -10,8 +14,8 @@ set :rails_env, 'staging'
 # unless any hosts have the primary property set.
 # Don't declare `role :all`, it's a meta role
 role :app, %w{user@url_or_ip}
-role :web, %w{user@url_or_ip}
-role :db,  %w{user@url_or_ip}
+# role :web, %w{user@url_or_ip}
+# role :db,  %w{user@url_or_ip}
 
 # Extended Server Syntax
 # ======================
@@ -19,8 +23,10 @@ role :db,  %w{user@url_or_ip}
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-server 'url_or_ip', user: 'user', roles: %w{web app db}, primary: true
-set :deploy_to, "/var/www/rails/#{fetch(:application)}"
+
+# server 'url_or_ip', user: 'user', roles: %w{web app db}, primary: true
+server 'url_or_ip', user: 'user', roles: %w{app}, primary: true
+set :deploy_to, "~/rails/#{fetch(:application)}"
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options
