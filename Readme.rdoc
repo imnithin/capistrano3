@@ -18,7 +18,9 @@
 
 * sudo apt-get install libpq-dev The pg gem is a native extension that wraps the libpq library., else you will run into pg gem could not installed - error message during bundle install
 
-* Although application would be running fine, You may run into strange and common error - When you run rails commands(rails -v from current dir) "The program 'rails' can be found in the following packages: ....." Solution: gem install rails -v 3.2.19 from current directory. I'm believing that it searches in .rvm directory of specified ruby version, but during cap deployment gems will be installed into shared directory.
+* Although application would be running fine, You may run into strange and common error - When you run rails commands(rails -v from current dir) "The program 'rails' can be found in the following packages: ....." Solution: gem install rails -v version from current directory. I'm believing that it searches in .rvm directory of specified ruby version, but during cap deployment gems will be installed into shared directory.
+
+* Mailer configurtions - sendmail etc
 
 Note: 1st deployment to new server will fail beacuse of missing database configurations, you will have to set database.yml file in shared/config/ directory and re-deploy.
 
