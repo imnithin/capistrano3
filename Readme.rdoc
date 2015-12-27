@@ -6,9 +6,11 @@
 
 * {Git Client installation for latest version}[http://unix.stackexchange.com/a/170831]
 
+* Ubuntu packages like imagemagick for paperclip, libfontconfig1 - font styling used by wicked_pdf
+
 = On Cap3 in this project
 
-* Use relevent ssh keys, so your client machine and git can interact smoothly. 
+* Use relevent ssh keys, so your client machine and git can interact smoothly.
  
 * For Rails 3 Use <tt>gem 'turbo-sprockets-rails3'</tt> for faster assets pre-compilation - Solved holding up for longer periods on precompiling during <tt>cap deploy</tt>
  
@@ -18,7 +20,7 @@
 
 * sudo apt-get install libpq-dev The pg gem is a native extension that wraps the libpq library., else you will run into pg gem could not installed - error message during bundle install
 
-* Although application would be running fine, You may run into strange and common error - When you run rails commands(rails -v from current dir) "The program 'rails' can be found in the following packages: ....." Solution: gem install rails -v version from current directory. I'm believing that it searches in .rvm directory of specified ruby version, but during cap deployment gems will be installed into shared directory.
+* Although application would be running fine, You may run into strange and common error - When you run rails commands(rails -v from current dir) "The program 'rails' can be found in the following packages: ....." Solution: use `bundle exec`
 
 * Mailer configurtions - sendmail etc
 

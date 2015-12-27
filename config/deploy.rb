@@ -1,7 +1,14 @@
-# config valid only for Capistrano 3.1
-lock '3.1.0'
+Airbrussh.configure do |config|
+  config.command_output = true
+end
+
+
+# config valid only for Capistrano 3.4
+lock '3.4.0'
 
 # setup repo details
+set :user, 'user_name'
+set :pty, true
 set :scm, :git
 set :repo_url, 'git@github.com:project.git'
 set :keep_releases, 3
@@ -28,16 +35,31 @@ set :linked_dirs, %w{log tmp/pids tmp/cache vendor/bundle public/assets} #rails3
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 set :delayed_job_args, "-n 2" # number of workers
-set :whenever_roles, ->{ :app } # be defaut whenever maps to db role.
+set :whenever_roles, ->{ :app } # by defaut whenever maps to db role.
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 
+before "deploy:restart", "deploy:asset_precompile"
+after "deploy:restart", "deploy:cleanup_assets"
+
 namespace :deploy do
+
+  desc 'assets precompile'
+  task :asset_precompile do
+    on roles(:app), in: :sequence, wait: 5 do
+      within release_path do
+        with rails_env: fetch(:stage) do
+          execute :rake, "assets:precompile"
+        end
+      end
+    end
+  end
+
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       execute :touch, release_path.join('tmp/restart.txt')
-      execute "cd '#{release_path}' && RAILS_ENV=#{fetch(rails_env)} nice -n 15 script/delayed_job -n 3 restart"
+      # execute "cd '#{release_path}' && RAILS_ENV=#{fetch(rails_env)} nice -n 15 script/delayed_job -n 3 restart"  # custom cmd.
     end
   end
 
